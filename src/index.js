@@ -19,15 +19,20 @@ import TaskForm from './views/TaskForm'
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <Router>
-        <Switch>
-          <Route exact path="/home" component={App} />
-          <Route exact path="/">
-            <Redirect to="/home" />
-          </Route>
-          <Route exact path="/addtask" component={TaskForm} />
-        </Switch>
-      </Router>
+      <div className="App">
+        <div className="App-header">
+          <h1>Task Manager</h1>
+        </div>
+        <Router>
+          <Switch>
+            <Route exact path="/home" component={App} />
+            <Route exact path="/">
+              <Redirect to="/home" />
+            </Route>
+            <Route exact path="/addtask" component={TaskForm} />
+          </Switch>
+        </Router>
+      </div>
     </React.StrictMode>,
   </Provider>,
   document.getElementById('root')
