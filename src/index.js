@@ -1,17 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// Style
 import './App.scss';
 
 // Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
 
+// Router
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+
+// Views
+import App from './views/App';
+import TaskForm from './views/TaskForm'
+
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <Router>
+        <Switch>
+          <Route exact path="/home" component={App} />
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route exact path="/addtask" component={TaskForm} />
+        </Switch>
+      </Router>
     </React.StrictMode>,
   </Provider>,
   document.getElementById('root')

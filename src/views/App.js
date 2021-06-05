@@ -19,7 +19,6 @@ class App extends Component {
     };
   }
   addTask () {
-    console.log("I will add task for you")
   }
   render () {
     return (
