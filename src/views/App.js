@@ -1,24 +1,10 @@
-import {withRouter} from 'react-router-dom';
-import {Component} from 'react';
-import {Button, Card} from 'react-bootstrap';
+import { Component } from 'react';
+import { Button, Card } from 'react-bootstrap';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { connect } from 'react-redux';
 
 class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      tasksList: [],
-      task: {
-        id: 0,
-        priority: "",
-        taskName: "",
-        taskDetails: "",
-        status: ""
-      }
-    };
-  }
   nextPath(path) {
     this.props.history.push(path);
   }
@@ -30,12 +16,35 @@ class App extends Component {
             <FontAwesomeIcon icon={faPlus} /> Add Task
           </Button>
         </div>
-        <div>
-          <Card></Card>
+        <div className="p-2">
+          {this.props.tasksList.map((ele, index) => {
+            return <Card
+              key={ele.id}
+              className="p-3 mb-3"
+              bg={(ele.priority==="low")?"warning": (ele.priority==="high")?"danger":"success"}
+              text="white"
+            >
+              <div className="row">
+                <div className="col-md-10">
+                  <Card.Title>{ele.taskName}</Card.Title>
+                </div>
+                <div className="col-md-2">
+                  Status - {ele.status}
+                </div>
+              </div>
+              <Card.Text>{ele.taskDetails}</Card.Text>
+            </Card>
+          })}
         </div>
       </div>
     )
   }
 }
 
-export default withRouter(App);
+const mapStateToProps = (state) => {
+  return {
+    tasksList: state.tasks.tasksList
+  }
+}
+
+export default connect(mapStateToProps)(App);

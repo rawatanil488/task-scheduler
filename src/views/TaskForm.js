@@ -1,7 +1,8 @@
-import {Component} from 'react';
-import {Button, Form, Card} from 'react-bootstrap';
+import { Component } from 'react';
+import { Button, Form, Card } from 'react-bootstrap';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { connect } from 'react-redux';
 
 class TaskForm extends Component {
   constructor () {
@@ -23,7 +24,8 @@ class TaskForm extends Component {
       taskName: this.state.taskName,
       taskDetails: this.state.taskDetails
     }
-    console.log("task - ", task)
+    this.props.addTask(task)
+    this.props.history.push("/");
   }
   render () {
     return (
@@ -70,4 +72,15 @@ class TaskForm extends Component {
   }
 }
 
-export default TaskForm;
+const dispatchToProps = (dispatch) => {
+  return {
+    addTask: (task) => {
+      dispatch({
+        type: "ADDTASK",
+        payload: task
+      })
+    }
+  }
+}
+
+export default connect(null, dispatchToProps)(TaskForm);

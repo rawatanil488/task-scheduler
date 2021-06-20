@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import counterReducer from './counter/counter.reducer';
+import tasksReducer from './tasks/tasks.reducer';
 
 const rootReducer = combineReducers({
-    counter: counterReducer,
+    tasks: tasksReducer,
 });
 
 export default rootReducer;

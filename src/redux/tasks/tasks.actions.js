@@ -1,4 +1,4 @@
-import { ADDTASK } from './counter.types';
+import { ADDTASK } from './tasks.types';
 
 export const addTask = () => {
     return {

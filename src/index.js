@@ -17,8 +17,8 @@ import App from './views/App';
 import TaskForm from './views/TaskForm'
 
 ReactDOM.render(
-  <Provider store={store}>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
       <div className="App">
         <div className="App-header">
           <h1>Task Manager</h1>
@@ -33,8 +33,8 @@ ReactDOM.render(
           </Switch>
         </Router>
       </div>
+      </Provider>
     </React.StrictMode>,
-  </Provider>,
   document.getElementById('root')
 );
 
